@@ -1,0 +1,15 @@
+query Query($id: ID!) {
+  getPost(key: $id) {
+    id
+    categoryId
+    title
+    key
+    tags
+    tagCollection
+    coverURL
+    content
+    authorId
+    createdAt
+    updatedAt
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "post-content",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./PostContent.js"
+}

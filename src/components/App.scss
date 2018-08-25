@@ -1,0 +1,111 @@
+@charset "utf-8";
+
+.theme-transition {
+  transition: background-color 500ms ease-out, filter 500ms ease-out;
+}
+
+.typesetting {
+
+  /* 标记，类似于手写的荧光笔的作用 */
+  mark {
+    padding: 2px;
+    margin: 0 5px;
+  }
+
+  /* 代码片断 */
+  pre, code, pre tt {
+    font-family: Courier, 'Courier New', monospace;
+  }
+
+  pre {
+    padding: 1rem 1.5rem;
+    display: block;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* 底部印刷体、版本等标记 */
+  small,
+  /* 图片说明 */
+  figcaption {
+    font-size: 0.9rem;
+  }
+
+  strong, b {
+    font-weight: bold;
+  }
+
+  /* 可拖动文件添加拖动手势 */
+  [draggable] {
+    cursor: move;
+  }
+
+  .clearfix:before, .clearfix:after {
+    content: "";
+    display: table;
+  }
+
+  .clearfix:after {
+    clear: both;
+  }
+
+  .clearfix {
+    zoom: 1;
+  }
+
+  /* 强制文本换行 */
+  .textwrap, .textwrap td, .textwrap th {
+    word-wrap: break-word;
+    word-break: break-all;
+  }
+
+  .textwrap-table {
+    table-layout: fixed;
+  }
+
+  /* 保证块/段落之间的空白隔行 */
+  p, pre, ul, ol, dl, form, hr, table, blockquote {
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+    line-height: 1.8rem;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 300;
+    margin-top: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+    line-height: 2.4rem;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+    line-height: 2.2rem;
+  }
+
+  h3 {
+    font-size: 1.6rem;
+    line-height: 2rem;
+  }
+
+  h4 {
+    font-size: 1.4rem;
+    line-height: 1.8rem;
+  }
+
+  h5, h6 {
+    font-size: 1.2rem;
+    line-height: 1.6rem;
+  }
+
+  /* Responsive images */
+  img {
+    max-width: 100%;
+    margin: 0 auto;
+    display: block;
+  }
+}

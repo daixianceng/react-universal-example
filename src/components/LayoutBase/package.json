@@ -1,0 +1,6 @@
+{
+  "name": "layout-base",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./LayoutBase.js"
+}

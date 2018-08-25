@@ -1,0 +1,23 @@
+query Query($categoryKey: String, $page: Int) {
+  getPosts(categoryKey: $categoryKey, page: $page) {
+    items {
+      id
+      categoryId
+      title
+      key
+      tags
+      tagCollection
+      coverURL
+      intro
+      authorId
+      createdAt
+      updatedAt
+    }
+    pagination {
+      currentPage
+      pageCount
+      perPage
+      totalCount
+    }
+  }
+}
