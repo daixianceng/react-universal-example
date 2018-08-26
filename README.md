@@ -11,6 +11,7 @@ Compared to `react-starter-kit`, this application provides the following feature
 - Google [Material](https://github.com/mui-org/material-ui) Design
 - Jss([Css in Js](http://cssinjs.org/)) themes
 - Write PostCss using Sass syntax ([precss](https://github.com/jonathantneal/precss))
+- Supports relative path (`APP_BASE_URL`)
 - Better webpack configuration
 - Removed unused dependencies
 
@@ -25,8 +26,13 @@ cp .env.example .env
 
 # Install dependencies
 npm install
+# or
+yarn
+
 # Run application in development
 npm start
+# or
+yarn start
 ```
 
 Now you can open `localhost:3000` in your borwser. The project depends on the API of [yii2-app-example](https://github.com/daixianceng/yii2-app-example). This is a clean and beautiful RESTful API, you will love it. The project has a default API to `https://demo.zhaidongxi.com/yii2-app-example-api`, so you do not need to install `yii2-app-example`.
@@ -35,14 +41,21 @@ Compile the project:
 
 ```
 npm run build -- --release
+# or
+yarn build -- --release
 ```
 
 Run:
 
 ```
 npm run serve
-# Or use pm2 to start the daemon (npm i pm2 -g)
+# or
+yarn serve
+
+# Or use pm2 to start the daemon (install pm2 first: npm i pm2 -g)
 npm run pm2-serve
+# or
+yarn pm2-serve
 ```
 
 More documentation please move [getting started guide](https://github.com/kriasoft/react-starter-kit/blob/feature/redux/docs/getting-started.md)
