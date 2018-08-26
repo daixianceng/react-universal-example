@@ -8,6 +8,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 
 import { getAllCategoriesIfNeeded } from 'actions/category';
 import Link from '../Link';
+import { toUrl } from '../../router';
 
 class CategoryMenu extends React.Component {
   static propTypes = {
@@ -57,7 +58,7 @@ class CategoryMenu extends React.Component {
           {categories.map(category => (
             <MenuItem
               component={Link}
-              to={`/category/${category.key}`}
+              to={toUrl('category', { categoryKey: category.key })}
               onClick={this.handleClose}
               key={category.id}
             >

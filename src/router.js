@@ -1,7 +1,10 @@
 import UniversalRouter from 'universal-router';
+import generateUrls from 'universal-router/generateUrls';
+import queryString from 'query-string';
 import routes from './routes';
 
-export default new UniversalRouter(routes, {
+const router = new UniversalRouter(routes, {
+  baseUrl: process.env.APP_BASE_URL,
   resolveRoute(context, params) {
     if (typeof context.route.load === 'function') {
       return context.route
@@ -14,3 +17,8 @@ export default new UniversalRouter(routes, {
     return undefined;
   },
 });
+
+export const toUrl = generateUrls(router, {
+  stringifyQueryParams: queryString.stringify,
+});
+export default router;

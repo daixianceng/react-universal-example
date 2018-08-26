@@ -12,6 +12,7 @@ import Typography from '@material-ui/core/Typography';
 
 import { open as openNavDrawer } from 'actions/navDrawer';
 import Link from '../Link';
+import { toUrl } from '../../router';
 import CategoryMenu from './CategoryMenu';
 import ThemeMenu from './ThemeMenu';
 import s from './styles';
@@ -40,7 +41,12 @@ class Navigation extends React.Component {
           <MenuIcon />
         </IconButton>
         <div className={classes.navs}>
-          <Button component={Link} to="/" color="inherit" title="Home">
+          <Button
+            component={Link}
+            to={toUrl('home')}
+            color="inherit"
+            title="Home"
+          >
             <Typography variant="title" color="inherit">
               {process.env.APP_NAME}
             </Typography>
@@ -48,7 +54,7 @@ class Navigation extends React.Component {
           <CategoryMenu className={cx(classes.flex, classes.hiddenDownSm)} />
           <Button
             component={Link}
-            to="/contact"
+            to={toUrl('contact')}
             color="inherit"
             className={classes.hiddenDownSm}
           >
@@ -56,7 +62,7 @@ class Navigation extends React.Component {
           </Button>
           <Button
             component={Link}
-            to="/about"
+            to={toUrl('about')}
             color="inherit"
             className={classes.hiddenDownSm}
           >
@@ -69,7 +75,7 @@ class Navigation extends React.Component {
   }
 }
 
-const mapState = state => ({});
+const mapState = () => ({});
 
 const mapDispatch = {
   openNavDrawer,

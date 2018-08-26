@@ -43,7 +43,7 @@ class Html extends React.Component {
           <meta charSet="utf-8" />
           <meta httpEquiv="x-ua-compatible" content="ie=edge" />
           <title>{title}</title>
-          <base href={process.env.APP_BASE_HREF} />
+          <base href={`${process.env.APP_BASE_URL}/`} />
           <meta name="description" content={description} />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           {scripts.map(script => (
@@ -51,9 +51,7 @@ class Html extends React.Component {
           ))}
           <link rel="manifest" href="/site.webmanifest" />
           <link rel="apple-touch-icon" href="/icon.png" />
-          {links.map(link => (
-            <link key={link} rel="stylesheet" href={link} />
-          ))}
+          {links.map(link => <link key={link} rel="stylesheet" href={link} />)}
           {styles.map(style => (
             <style
               key={style.id}
@@ -67,9 +65,7 @@ class Html extends React.Component {
           <script
             dangerouslySetInnerHTML={{ __html: `window.App=${serialize(app)}` }}
           />
-          {scripts.map(script => (
-            <script key={script} src={script} />
-          ))}
+          {scripts.map(script => <script key={script} src={script} />)}
         </body>
       </html>
     );

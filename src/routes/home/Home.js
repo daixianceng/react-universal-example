@@ -10,6 +10,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Link from 'components/Link';
 import Post from 'components/Post';
 import Pagination from 'components/Pagination';
+import { toUrl } from '../../router';
 import s from './styles';
 
 class Home extends React.Component {
@@ -44,7 +45,10 @@ class Home extends React.Component {
                 variant="headline"
                 gutterBottom
               >
-                <Link className={classes.titleLink} to={`/article/${item.key}`}>
+                <Link
+                  className={classes.titleLink}
+                  to={toUrl('article', { articleKey: item.key })}
+                >
                   {item.title}
                 </Link>
               </Typography>
@@ -53,7 +57,7 @@ class Home extends React.Component {
             <CardActions className={classes.actions}>
               <Button
                 component={Link}
-                to={`/article/${item.key}`}
+                to={toUrl('article', { articleKey: item.key })}
                 size="small"
                 color="primary"
               >

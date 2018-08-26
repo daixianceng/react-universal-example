@@ -16,6 +16,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 import { getAllCategoriesIfNeeded } from 'actions/category';
 import Link from '../Link';
+import { toUrl } from '../../router';
 import s from './styles';
 
 class Side extends React.Component {
@@ -42,7 +43,7 @@ class Side extends React.Component {
             <div className={classes.avatarContainer}>
               <Avatar
                 alt="Avatar"
-                src="/avatar.png"
+                src="avatar.png"
                 className={cx('theme-transition', classes.avatar)}
               />
             </div>
@@ -97,7 +98,7 @@ class Side extends React.Component {
 }
 
 const CategoryItem = ({ category }) => {
-  const path = `/category/${category.key}`;
+  const path = toUrl('category', { categoryKey: category.key });
   return (
     <ListItem disableGutters>
       <Chip

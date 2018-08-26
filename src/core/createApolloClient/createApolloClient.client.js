@@ -23,7 +23,7 @@ const link = from([
   }),
   ...(__DEV__ ? [apolloLogger] : []),
   new HttpLink({
-    uri: '/graphql',
+    uri: `${process.env.APP_BASE_URL}/graphql`,
     credentials: 'include',
   }),
 ]);

@@ -20,6 +20,7 @@ import {
 } from 'actions/navDrawer';
 import { getAllCategoriesIfNeeded } from 'actions/category';
 import Link from '../Link';
+import { toUrl } from '../../router';
 import s from './styles';
 
 class NavDrawer extends React.Component {
@@ -55,7 +56,12 @@ class NavDrawer extends React.Component {
       >
         <div className={classes.container}>
           <List>
-            <ListItem button component={Link} to="/" onClick={this.handleClose}>
+            <ListItem
+              button
+              component={Link}
+              to={toUrl('home')}
+              onClick={this.handleClose}
+            >
               <ListItemIcon>
                 <HomeIcon />
               </ListItemIcon>
@@ -74,7 +80,7 @@ class NavDrawer extends React.Component {
               <ListItem
                 button
                 component={Link}
-                to={`/category/${category.key}`}
+                to={toUrl('category', { categoryKey: category.key })}
                 onClick={this.handleClose}
                 key={category.id}
               >
@@ -87,7 +93,7 @@ class NavDrawer extends React.Component {
             <ListItem
               button
               component={Link}
-              to="/contact"
+              to={toUrl('contact')}
               onClick={this.handleClose}
             >
               <ListItemIcon>
@@ -98,7 +104,7 @@ class NavDrawer extends React.Component {
             <ListItem
               button
               component={Link}
-              to="/about"
+              to={toUrl('about')}
               onClick={this.handleClose}
             >
               <ListItemIcon>
