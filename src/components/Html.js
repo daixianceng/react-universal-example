@@ -49,8 +49,9 @@ class Html extends React.Component {
           {scripts.map(script => (
             <link key={script} rel="preload" href={script} as="script" />
           ))}
-          <link rel="manifest" href="/site.webmanifest" />
-          <link rel="apple-touch-icon" href="/icon.png" />
+          <link rel="icon" type="image/x-icon" href="favicon.ico" />
+          <link rel="manifest" href="site.webmanifest" />
+          <link rel="apple-touch-icon" href="icon.png" />
           {links.map(link => <link key={link} rel="stylesheet" href={link} />)}
           {styles.map(style => (
             <style
