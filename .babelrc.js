@@ -3,21 +3,15 @@
 module.exports = {
   presets: [
     [
-      '@babel/preset-env',
+      '@babel/env',
       {
         targets: {
           node: 'current',
         },
       },
     ],
-    [
-      '@babel/preset-stage-2',
-      {
-        decoratorsLegacy: true,
-      },
-    ],
-    '@babel/preset-flow',
-    '@babel/preset-react',
+    '@babel/flow',
+    '@babel/react',
   ],
   ignore: ['node_modules', 'build'],
 };

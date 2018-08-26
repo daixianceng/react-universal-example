@@ -82,7 +82,7 @@ const config = {
             // A Babel preset that can automatically determine the Babel plugins and polyfills
             // https://github.com/babel/babel-preset-env
             [
-              '@babel/preset-env',
+              '@babel/env',
               {
                 targets: {
                   browsers: pkg.browserslist,
@@ -93,22 +93,20 @@ const config = {
                 forceAllTransforms: !isDebug, // for UglifyJS
               },
             ],
-            // Experimental ECMAScript proposals
-            // https://babeljs.io/docs/plugins/#presets-stage-x-experimental-presets-
-            [
-              '@babel/preset-stage-2',
-              {
-                decoratorsLegacy: true,
-              },
-            ],
             // Flow
             // https://github.com/babel/babel/tree/master/packages/babel-preset-flow
-            '@babel/preset-flow',
+            '@babel/flow',
             // JSX
             // https://github.com/babel/babel/tree/master/packages/babel-preset-react
-            ['@babel/preset-react', { development: isDebug }],
+            ['@babel/react', { development: isDebug }],
           ],
           plugins: [
+            '@babel/plugin-proposal-class-properties',
+            '@babel/plugin-proposal-export-namespace-from',
+            '@babel/plugin-proposal-function-sent',
+            '@babel/plugin-proposal-json-strings',
+            '@babel/plugin-syntax-dynamic-import',
+            '@babel/plugin-syntax-import-meta',
             // Treat React JSX elements as value types and hoist them to the highest scope
             // https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-react-constant-elements
             ...(isDebug ? [] : ['@babel/transform-react-constant-elements']),
@@ -288,13 +286,13 @@ const config = {
       ...(isDebug
         ? []
         : [
-          {
-            test: resolvePath(
-              'node_modules/react-deep-force-update/lib/index.js',
-            ),
-            loader: 'null-loader',
-          },
-        ]),
+            {
+              test: resolvePath(
+                'node_modules/react-deep-force-update/lib/index.js',
+              ),
+              loader: 'null-loader',
+            },
+          ]),
     ],
   },
 
@@ -311,7 +309,7 @@ const config = {
 
       // load '.env.example' to verify the '.env' variables are all set.
       // Can also be a string to a different file.
-      safe: true,
+      safe: false,
       systemvars: false,
       silent: false,
     }),
@@ -407,10 +405,10 @@ const clientConfig = {
     ...(isDebug
       ? []
       : [
-        // Webpack Bundle Analyzer
-        // https://github.com/th0r/webpack-bundle-analyzer
-        ...(isAnalyze ? [new BundleAnalyzerPlugin()] : []),
-      ]),
+          // Webpack Bundle Analyzer
+          // https://github.com/th0r/webpack-bundle-analyzer
+          ...(isAnalyze ? [new BundleAnalyzerPlugin()] : []),
+        ]),
   ],
 
   // Move modules that occur in multiple entry chunks to a new entry chunk (the commons chunk).
@@ -477,19 +475,19 @@ const serverConfig = {
             ...rule.options,
             presets: rule.options.presets.map(
               preset =>
-                preset[0] !== '@babel/preset-env'
+                preset[0] !== '@babel/env'
                   ? preset
                   : [
-                    '@babel/preset-env',
-                    {
-                      targets: {
-                        node: pkg.engines.node.match(/(\d+\.?)+/)[0],
+                      '@babel/env',
+                      {
+                        targets: {
+                          node: pkg.engines.node.match(/(\d+\.?)+/)[0],
+                        },
+                        modules: false,
+                        useBuiltIns: false,
+                        debug: false,
                       },
-                      modules: false,
-                      useBuiltIns: false,
-                      debug: false,
-                    },
-                  ],
+                    ],
             ),
           },
         };
