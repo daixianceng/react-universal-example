@@ -1,5 +1,11 @@
 # react-universal-example
 
+<p align="center">
+  <a href="https://demo.zhaidongxi.com/react-universal-example/" target="_blank">
+    <img src="./media.gif" alt="react-universal-example" />
+  </a>
+</p>
+
 这是一个[React](https://github.com/facebook/react)应用的例子，基于[react-starter-kit](https://github.com/kriasoft/react-starter-kit/tree/feature/redux)开发
 
 在线 [Demo](https://demo.zhaidongxi.com/react-universal-example/)
