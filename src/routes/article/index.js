@@ -8,6 +8,7 @@ import query from './query.graphql';
 async function action({ client, params }) {
   let result;
   let title;
+  let description;
   let component;
 
   try {
@@ -17,6 +18,7 @@ async function action({ client, params }) {
     });
     if (result.data && result.data.getPost) {
       title = result.data.getPost.title;
+      description = result.data.getPost.intro;
       component = (
         <Layout>
           <Article data={result.data.getPost} />
@@ -33,6 +35,7 @@ async function action({ client, params }) {
 
   return {
     title,
+    description,
     component,
   };
 }
