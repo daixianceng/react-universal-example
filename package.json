@@ -112,7 +112,7 @@
     "flow-bin": "^0.68.0",
     "front-matter": "^2.3.0",
     "glob": "^7.1.2",
-    "husky": "^0.14.3",
+    "husky": "^1.0.0-rc.13",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^22.4.3",
     "jest-codemods": "^0.15.0",
@@ -150,6 +150,11 @@
     "webpack-hot-middleware": "^2.21.2",
     "webpack-node-externals": "^1.6.0"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "lint-staged": {
     "*.{js,jsx}": [
       "eslint --no-ignore --fix",
@@ -165,7 +170,6 @@
     ]
   },
   "scripts": {
-    "precommit": "lint-staged",
     "lint-js": "eslint --ignore-path .gitignore --ignore-pattern \"!**/.*\" .",
     "lint-css": "stylelint \"src/**/*.{less,styl,scss,sass,sss}\"",
     "lint": "yarn run lint-js && yarn run lint-css",
