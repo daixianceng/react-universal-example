@@ -43,7 +43,7 @@ export function fetchPost(key) {
  */
 export function fetchPosts(categoryId, page) {
   return fetch(
-    `${url}/v1/posts?PostSearch%5BcategoryId%5D=${categoryId}&page=${page}&per-page=10&sort=-id`,
+    `${url}/v1/posts?PostSearch%5BcategoryId%5D=${categoryId}&PostSearch%5Bstatus%5D=1&page=${page}&per-page=10&sort=-id`,
   )
     .then(response => response.json())
     .then(result => {
