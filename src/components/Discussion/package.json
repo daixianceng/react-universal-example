@@ -1,0 +1,6 @@
+{
+  "name": "discussion",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./Discussion.js"
+}

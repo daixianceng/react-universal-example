@@ -1,9 +1,9 @@
 export default theme => ({
-  post: {
+  card: {
     marginBottom: theme.spacing.unit * 5,
   },
   [theme.breakpoints.down('sm')]: {
-    post: {
+    card: {
       marginBottom: theme.spacing.unit * 2,
     },
   },

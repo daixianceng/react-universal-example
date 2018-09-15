@@ -4,13 +4,8 @@ import { withStyles } from '@material-ui/core/styles';
 
 import Post from 'components/Post';
 import PostContent from 'components/PostContent';
-import { toUrl } from 'utils';
+import Discussion from 'components/Discussion';
 import s from './styles';
-
-let Disqus;
-if (process.env.BROWSER && process.env.DISQUS_ENABLE === '1') {
-  Disqus = require('disqus-react'); // eslint-disable-line global-require
-}
 
 class Article extends React.Component {
   static propTypes = {
@@ -32,16 +27,10 @@ class Article extends React.Component {
 
   render() {
     const { data, classes } = this.props;
-    const disqusConfig = {
-      url: toUrl('article', { articleKey: data.key }, true),
-      identifier: data.id,
-      title: data.title,
-      category_id: data.categoryId,
-    };
     return (
       <>
         <Post
-          className={classes.post}
+          className={classes.card}
           image={data.coverURL}
           title={data.title}
           tags={data.tagCollection}
@@ -49,12 +38,7 @@ class Article extends React.Component {
         >
           <PostContent title={data.title} content={data.content} />
         </Post>
-        {Disqus && (
-          <Disqus.DiscussionEmbed
-            shortname={process.env.DISQUS_SHORTNAME}
-            config={disqusConfig}
-          />
-        )}
+        <Discussion className={classes.card} post={data} />
       </>
     );
   }
