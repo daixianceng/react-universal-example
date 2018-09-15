@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import dayjs from 'dayjs';
 
 import IconButton from '@material-ui/core/IconButton';
 import Menu from '@material-ui/core/Menu';
@@ -38,7 +39,12 @@ class ThemeMenu extends React.Component {
   };
 
   handleSwitch = key => {
-    this.context.cookies.set('theme', key);
+    this.context.cookies.set('theme', key, {
+      path: '/',
+      expires: dayjs()
+        .add(6, 'month')
+        .toDate(),
+    });
     window.rerender();
     this.handleClose();
   };
