@@ -38,7 +38,7 @@ class Article extends React.Component {
         >
           <PostContent title={data.title} content={data.content} />
         </Post>
-        <Discussion className={classes.card} post={data} />
+        <Discussion id="comment" className={classes.card} post={data} />
       </>
     );
   }

@@ -1,0 +1,6 @@
+{
+  "name": "comment-count",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./CommentCount.js"
+}

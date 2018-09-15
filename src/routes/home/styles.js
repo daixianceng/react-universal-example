@@ -24,7 +24,13 @@ export default theme => ({
     overflow: 'hidden',
     lineHeight: '1.5rem',
   },
-  actions: {
+  actionLeft: {
+    display: 'flex',
+    flexGrow: 1,
+  },
+  actionRight: {
+    display: 'flex',
+    flexGrow: 1,
     justifyContent: 'flex-end',
   },
   pagination: {
