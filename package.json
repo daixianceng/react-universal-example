@@ -28,6 +28,7 @@
     "core-js": "^2.5.3",
     "dataloader": "^1.4.0",
     "dayjs": "^1.7.5",
+    "disqus-react": "^1.0.5",
     "dotenv": "^6.0.0",
     "dotenv-webpack": "^1.5.7",
     "express": "^4.16.3",

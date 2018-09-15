@@ -2,9 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
-import Post from '../../components/Post';
-import PostContent from '../../components/PostContent';
+import Post from 'components/Post';
+import PostContent from 'components/PostContent';
+import { toUrl } from 'utils';
 import s from './styles';
+
+let Disqus;
+if (process.env.BROWSER && process.env.DISQUS_ENABLE === '1') {
+  Disqus = require('disqus-react'); // eslint-disable-line global-require
+}
 
 class Article extends React.Component {
   static propTypes = {
@@ -26,16 +32,30 @@ class Article extends React.Component {
 
   render() {
     const { data, classes } = this.props;
+    const disqusConfig = {
+      url: toUrl('article', { articleKey: data.key }, true),
+      identifier: data.id,
+      title: data.title,
+      category_id: data.categoryId,
+    };
     return (
-      <Post
-        className={classes.post}
-        image={data.coverURL}
-        title={data.title}
-        tags={data.tagCollection}
-        date={data.createdAt * 1000}
-      >
-        <PostContent title={data.title} content={data.content} />
-      </Post>
+      <>
+        <Post
+          className={classes.post}
+          image={data.coverURL}
+          title={data.title}
+          tags={data.tagCollection}
+          date={data.createdAt * 1000}
+        >
+          <PostContent title={data.title} content={data.content} />
+        </Post>
+        {Disqus && (
+          <Disqus.DiscussionEmbed
+            shortname={process.env.DISQUS_SHORTNAME}
+            config={disqusConfig}
+          />
+        )}
+      </>
     );
   }
 }

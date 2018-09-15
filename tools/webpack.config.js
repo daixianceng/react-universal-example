@@ -364,6 +364,11 @@ const clientConfig = {
       __DEV__: isDebug,
     }),
 
+    // Ignore disqus if disqus is not enabled
+    ...(process.env.DISQUS_ENABLE === '1'
+      ? []
+      : [new webpack.IgnorePlugin(/^disqus-react$/)]),
+
     // Emit a file with assets paths
     // https://github.com/webdeveric/webpack-assets-manifest#options
     new WebpackAssetsManifest({
@@ -529,6 +534,9 @@ const serverConfig = {
       'process.env.BROWSER': false,
       __DEV__: isDebug,
     }),
+
+    // Don't render disqus on the server side
+    new webpack.IgnorePlugin(/^disqus-react$/),
 
     // Adds a banner to the top of each generated chunk
     // https://webpack.js.org/plugins/banner-plugin/

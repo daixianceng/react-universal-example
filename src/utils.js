@@ -1,4 +1,4 @@
-/* eslint-disable import/prefer-default-export */
+import { toUrl as toRelativeUrl } from './router';
 
 export function getInitialWidthByUserAgent(userAgent) {
   if (['Android', 'iOS'].includes(userAgent.os.family)) {
@@ -11,4 +11,18 @@ export function getInitialWidthByUserAgent(userAgent) {
   }
   // For desktop
   return 'lg';
-};
+}
+
+/**
+ * Generates URL
+ */
+export function toUrl(...args) {
+  const last = args.pop();
+  if (typeof last === 'boolean') {
+    if (last === true) {
+      return process.env.APP_HOME_URL + toRelativeUrl(...args);
+    }
+    return toRelativeUrl(...args);
+  }
+  return toRelativeUrl(...args, last);
+}
