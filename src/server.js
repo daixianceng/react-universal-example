@@ -6,7 +6,6 @@ import express from 'express';
 import useragent from 'useragent';
 import Cookies from 'universal-cookie';
 import bodyParser from 'body-parser';
-import expressJwt, { UnauthorizedError as Jwt401Error } from 'express-jwt';
 import { graphql } from 'graphql';
 import expressGraphQL from 'express-graphql';
 import nodeFetch from 'node-fetch';
@@ -23,7 +22,6 @@ import App from './components/App';
 import Html from './components/Html';
 import createFetch from './createFetch';
 import router from './router';
-import models from './data/models';
 import schema from './data/schema';
 import Context from './data/Context';
 // import assets from './asset-manifest.json'; // eslint-disable-line import/no-unresolved
@@ -76,27 +74,6 @@ app.use((req, res, next) => {
 });
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
-//
-// Authentication
-// -----------------------------------------------------------------------------
-app.use(
-  expressJwt({
-    secret: config.auth.jwt.secret,
-    credentialsRequired: false,
-    getToken: req => req.cookies.get('id_token'),
-  }),
-);
-// Error handler for express-jwt
-app.use((err, req, res, next) => {
-  // eslint-disable-line no-unused-vars
-  if (err instanceof Jwt401Error) {
-    console.error('[express-jwt-error]', req.cookies.get('id_token'));
-    // `clearCookie`, otherwise user can't use web-app until cookie expires
-    res.clearCookie('id_token');
-  }
-  next(err);
-});
 
 //
 // Register API middleware
@@ -274,12 +251,9 @@ app.use((err, req, res, next) => {
 //
 // Launch the server
 // -----------------------------------------------------------------------------
-const promise = models.sync().catch(err => console.error(err.stack));
 if (!module.hot) {
-  promise.then(() => {
-    app.listen(config.port, () => {
-      console.info(`The server is running at http://localhost:${config.port}/`);
-    });
+  app.listen(config.port, () => {
+    console.info(`The server is running at http://localhost:${config.port}/`);
   });
 }
 
