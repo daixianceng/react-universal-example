@@ -40,7 +40,7 @@ class ThemeMenu extends React.Component {
 
   handleSwitch = key => {
     this.context.cookies.set('theme', key, {
-      path: '/',
+      path: process.env.APP_BASE_URL,
       expires: dayjs()
         .add(6, 'month')
         .toDate(),
