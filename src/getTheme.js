@@ -26,20 +26,32 @@ function createTheme(theme) {
 const themes = new Map();
 
 if (process.env.BROWSER) {
-  themes.set('Elegant Black', createTheme(elegantBlack));
-  themes.set('Romantic Purple', createTheme(romanticPurple));
+  themes.set('elegant-black', {
+    name: 'Elegant Black',
+    source: createTheme(elegantBlack),
+  });
+  themes.set('romantic-purple', {
+    name: 'Romantic Purple',
+    source: createTheme(romanticPurple),
+  });
 }
 
 function getTheme(key) {
   if (process.env.BROWSER) {
-    return themes.get(key) || themes.get('Romantic Purple');
+    return themes.get(key) || themes.get('romantic-purple');
   }
   switch (key) {
-    case 'Elegant Black':
-      return createTheme(elegantBlack);
-    case 'Romantic Purple':
+    case 'elegant-black':
+      return {
+        name: 'Elegant Black',
+        source: createTheme(elegantBlack),
+      };
+    case 'romantic-purple':
     default:
-      return createTheme(romanticPurple);
+      return {
+        name: 'Romantic Purple',
+        source: createTheme(romanticPurple),
+      };
   }
 }
 

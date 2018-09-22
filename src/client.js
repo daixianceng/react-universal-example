@@ -112,7 +112,7 @@ async function onLocationChange(location, action) {
     const renderReactApp = ReactDOM.render;
     appInstance = renderReactApp(
       <JssProvider jss={jss}>
-        <MuiThemeProvider theme={theme}>
+        <MuiThemeProvider theme={theme.source}>
           <App context={context}>{route.component}</App>
         </MuiThemeProvider>
       </JssProvider>,

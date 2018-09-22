@@ -61,7 +61,7 @@ class ThemeMenu extends React.Component {
           aria-label="Menu"
           color="inherit"
           onClick={this.handleOpen}
-          title="Switch themes"
+          title="Switch theme"
         >
           <ColorLensIcon />
         </IconButton>
@@ -74,12 +74,12 @@ class ThemeMenu extends React.Component {
           {[...themes.entries()].map(([key, item]) => (
             <MenuItem
               onClick={
-                item === theme ? undefined : () => this.handleSwitch(key)
+                item.source === theme ? undefined : () => this.handleSwitch(key)
               }
-              selected={item === theme}
+              selected={item.source === theme}
               key={key}
             >
-              {key}
+              {item.name}
             </MenuItem>
           ))}
         </Menu>

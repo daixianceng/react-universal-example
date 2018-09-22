@@ -170,7 +170,7 @@ app.get('*', async (req, res, next) => {
     const theme = getTheme(req.cookies.get('theme'));
     const rootComponent = props => (
       <JssProvider jss={jss} registry={sheets} {...props}>
-        <MuiThemeProvider theme={theme} sheetsManager={sheetsManager}>
+        <MuiThemeProvider theme={theme.source} sheetsManager={sheetsManager}>
           <App context={context}>{route.component}</App>
         </MuiThemeProvider>
       </JssProvider>
