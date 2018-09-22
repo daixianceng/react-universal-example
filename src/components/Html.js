@@ -44,7 +44,10 @@ class Html extends React.Component {
           <meta httpEquiv="x-ua-compatible" content="ie=edge" />
           <title>{title}</title>
           <base href={`${process.env.APP_BASE_URL}/`} />
-          <meta name="description" content={description} />
+          <meta
+            name="description"
+            content={description || process.env.APP_DESCRIPTION}
+          />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           {scripts.map(script => (
             <link key={script} rel="preload" href={script} as="script" />
