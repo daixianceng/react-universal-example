@@ -21,7 +21,7 @@ async function action({ client, params }) {
       description = result.data.getPost.intro;
       component = (
         <Layout>
-          <Article data={result.data.getPost} />
+          <Article post={result.data.getPost} />
         </Layout>
       );
     } else {

@@ -1,0 +1,6 @@
+{
+  "name": "post-tags",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./PostTags.js"
+}

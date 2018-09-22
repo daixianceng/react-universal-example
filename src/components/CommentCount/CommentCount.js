@@ -8,20 +8,18 @@ if (process.env.BROWSER && process.env.DISQUS_ENABLE === '1') {
 
 class CommentCount extends React.Component {
   static propTypes = {
-    post: PropTypes.shape({
-      id: PropTypes.string.isRequired,
-    }).isRequired,
+    identifier: PropTypes.string.isRequired,
   };
 
   render() {
-    const { post, ...props } = this.props;
+    const { identifier, ...props } = this.props;
 
     return Disqus ? (
       <span {...props}>
         <Disqus.CommentCount
           shortname={process.env.DISQUS_SHORTNAME}
           config={{
-            identifier: post.id,
+            identifier,
           }}
         >
           Comments

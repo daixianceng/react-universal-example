@@ -1,22 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
+import Card from '@material-ui/core/Card';
+import Divider from '@material-ui/core/Divider';
 import { withStyles } from '@material-ui/core/styles';
 
-import Post from 'components/Post';
+import PostCover from 'components/PostCover';
+import PostTags from 'components/PostTags';
 import PostContent from 'components/PostContent';
 import Discussion from 'components/Discussion';
 import s from './styles';
 
 class Article extends React.Component {
   static propTypes = {
-    data: PropTypes.shape({
+    post: PropTypes.shape({
       id: PropTypes.string.isRequired,
       categoryId: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
       key: PropTypes.string.isRequired,
       tags: PropTypes.string.isRequired,
       tagCollection: PropTypes.arrayOf(PropTypes.string).isRequired,
-      coverURL: PropTypes.string.isRequired,
+      coverURL: PropTypes.string,
       content: PropTypes.string.isRequired,
       authorId: PropTypes.number.isRequired,
       createdAt: PropTypes.number.isRequired,
@@ -26,19 +30,29 @@ class Article extends React.Component {
   };
 
   render() {
-    const { data, classes } = this.props;
+    const { post, classes } = this.props;
     return (
       <>
-        <Post
+        <div className={classes.card}>
+          <Card className="theme-transition">
+            {post.coverURL && (
+              <>
+                <PostCover image={post.coverURL} title={post.title} />
+                <PostTags
+                  tags={post.tagCollection}
+                  date={post.createdAt * 1000}
+                />
+                <Divider />
+              </>
+            )}
+            <PostContent title={post.title} content={post.content} />
+          </Card>
+        </div>
+        <Discussion
+          id={`comment-${post.id}`}
           className={classes.card}
-          image={data.coverURL}
-          title={data.title}
-          tags={data.tagCollection}
-          date={data.createdAt * 1000}
-        >
-          <PostContent title={data.title} content={data.content} />
-        </Post>
-        <Discussion id="comment" className={classes.card} post={data} />
+          post={post}
+        />
       </>
     );
   }

@@ -1,0 +1,6 @@
+{
+  "name": "post-cover",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./PostCover.js"
+}
